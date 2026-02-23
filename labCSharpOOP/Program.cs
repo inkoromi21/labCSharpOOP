@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ConsoleApp5
+namespace OOPLabs
 {
   public class Animal
   {
