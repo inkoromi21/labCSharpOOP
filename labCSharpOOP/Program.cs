@@ -5,11 +5,11 @@ namespace OOPLabs
 {
   public class Animal
   {
-    public string nickname;
-    public int age;
-    public string habitat;
-    public string typeOfFood;
-    public string color;
+    private string nickname;
+    private int age;
+    private string habitat;
+    private string typeOfFood;
+    private string color;
 
     public Animal(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor)
     {
@@ -25,7 +25,7 @@ namespace OOPLabs
       return $"nickname: {nickname}\nage: {age}\nhabitat: {habitat}\ntype of food: {typeOfFood}\ncolor: {color}";
     }
 
-    public virtual string GetType()
+    public virtual string GetAnimalType()
     {
       return "Animal";
     }
@@ -33,7 +33,7 @@ namespace OOPLabs
 
   public class Mammal : Animal
   {
-    public bool hasFur;
+    private bool hasFur;
 
     public Mammal(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, bool animalHasFur) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
@@ -45,7 +45,7 @@ namespace OOPLabs
       return base.GetInfo() + $"\nHas fur: {hasFur}";
     }
 
-    public override string GetType()
+    public override string GetAnimalType()
     {
       return "Mammal";
     }
@@ -53,7 +53,7 @@ namespace OOPLabs
 
   public class Bird : Animal
   {
-    public float wingSpan;
+    private float wingSpan;
 
     public Bird(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, float animalWingSpan) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
@@ -65,7 +65,7 @@ namespace OOPLabs
       return base.GetInfo() + $"\nWing span: {wingSpan}";
     }
 
-    public override string GetType()
+    public override string GetAnimalType()
     {
       return "Bird";
     }
@@ -73,7 +73,7 @@ namespace OOPLabs
 
   public class Fish : Animal
   {
-    public string waterType;
+    private string waterType;
 
     public Fish(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, string animalWaterType) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
@@ -85,7 +85,7 @@ namespace OOPLabs
       return base.GetInfo() + $"\nWater type: {waterType}";
     }
 
-    public override string GetType()
+    public override string GetAnimalType()
     {
       return "Fish";
     }
@@ -93,7 +93,7 @@ namespace OOPLabs
 
   public class Reptile : Animal
   {
-    public bool isVenomous;
+    private bool isVenomous;
 
     public Reptile(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, bool animalIsVenomous) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
@@ -105,7 +105,7 @@ namespace OOPLabs
       return base.GetInfo() + $"\nIs venomous: {isVenomous}";
     }
 
-    public override string GetType()
+    public override string GetAnimalType()
     {
       return "Reptile";
     }
@@ -113,7 +113,7 @@ namespace OOPLabs
 
   public class Amphibian : Animal
   {
-    public int skinMoisture;
+    private int skinMoisture;
 
     public Amphibian(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, int animalSkinMoisture) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
@@ -125,7 +125,7 @@ namespace OOPLabs
       return base.GetInfo() + $"\nSkin moisture: {skinMoisture}";
     }
 
-    public override string GetType()
+    public override string GetAnimalType()
     {
       return "Amphibian";
     }
@@ -133,10 +133,10 @@ namespace OOPLabs
 
   public sealed class AnimalManager
   {
-    public static AnimalManager _instance;
-    public List<Animal> _animals;
+    private static AnimalManager _instance;
+    private List<Animal> _animals;
 
-    public AnimalManager()
+    private AnimalManager()
     {
       _animals = new List<Animal>();
     }
@@ -153,7 +153,7 @@ namespace OOPLabs
       }
     }
 
-    public void AddDocument(Animal theAddedAnimal)
+    public void AddAnimal(Animal theAddedAnimal)
     {
       _animals.Add(theAddedAnimal);
       Console.WriteLine("\nAnimal added successfully!");
@@ -170,7 +170,7 @@ namespace OOPLabs
       Console.WriteLine("\n=== All animal ===");
       for (int animalIndex = 0; animalIndex < _animals.Count; ++animalIndex)
       {
-        Console.WriteLine($"\n--- Animal #{animalIndex + 1} ({_animals[animalIndex].GetType()}) ---");
+        Console.WriteLine($"\n--- Animal #{animalIndex + 1} ({_animals[animalIndex].GetAnimalType()}) ---");
         Console.WriteLine(_animals[animalIndex].GetInfo());
       }
     }
@@ -185,6 +185,7 @@ namespace OOPLabs
       string nicknameThisAnimal;
       int ageThisAnimal;
       string habitatThisAnimal;
+      string typeOfFoodThisAnimal;
       string colorThisAnimal;
       string propertyThisAnimal;
 
@@ -212,24 +213,24 @@ namespace OOPLabs
           ageThisAnimal = int.Parse(Console.ReadLine());
 
           Console.Write("\nEnter habitat: ");
-          nicknameThisAnimal = Console.ReadLine();
+          habitatThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter type of food: ");
-          habitatThisAnimal = Console.ReadLine();
+          typeOfFoodThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter color: ");
           colorThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter has fur (y/n): ");
-          propertyThisAnimal = Console.ReadLine();
+          propertyThisAnimal = Console.ReadLine().ToLower();
 
-          if (propertyThisAnimal == "y")
+          if (propertyThisAnimal == "y" || propertyThisAnimal == "yes")
           {
-            newAnimal = new Mammal(nicknameThisAnimal, ageThisAnimal, nicknameThisAnimal, habitatThisAnimal, colorThisAnimal, true);
+            newAnimal = new Mammal(nicknameThisAnimal, ageThisAnimal, habitatThisAnimal, typeOfFoodThisAnimal, colorThisAnimal, true);
           }
-          else if (propertyThisAnimal == "n")
+          else if (propertyThisAnimal == "n" || propertyThisAnimal == "no")
           {
-            newAnimal = new Mammal(nicknameThisAnimal, ageThisAnimal, nicknameThisAnimal, habitatThisAnimal, colorThisAnimal, false);
+            newAnimal = new Mammal(nicknameThisAnimal, ageThisAnimal, habitatThisAnimal, typeOfFoodThisAnimal, colorThisAnimal, false);
           }
         }
 
@@ -242,10 +243,10 @@ namespace OOPLabs
           ageThisAnimal = int.Parse(Console.ReadLine());
 
           Console.Write("\nEnter habitat: ");
-          nicknameThisAnimal = Console.ReadLine();
+          habitatThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter type of food: ");
-          habitatThisAnimal = Console.ReadLine();
+          typeOfFoodThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter color: ");
           colorThisAnimal = Console.ReadLine();
@@ -253,7 +254,7 @@ namespace OOPLabs
           Console.Write("\nEnter wing span: ");
           propertyThisAnimal = Console.ReadLine();
 
-          newAnimal = new Bird(nicknameThisAnimal, ageThisAnimal, nicknameThisAnimal, habitatThisAnimal, colorThisAnimal, float.Parse(propertyThisAnimal));
+          newAnimal = new Bird(nicknameThisAnimal, ageThisAnimal, habitatThisAnimal, typeOfFoodThisAnimal, colorThisAnimal, float.Parse(propertyThisAnimal));
         }
 
         else if (modeSelection == 3)
@@ -265,18 +266,18 @@ namespace OOPLabs
           ageThisAnimal = int.Parse(Console.ReadLine());
 
           Console.Write("\nEnter habitat: ");
-          nicknameThisAnimal = Console.ReadLine();
+          habitatThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter type of food: ");
-          habitatThisAnimal = Console.ReadLine();
+          typeOfFoodThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter color: ");
           colorThisAnimal = Console.ReadLine();
 
-          Console.Write("\nEnter wing span: ");
+          Console.Write("\nEnter water type: ");
           propertyThisAnimal = Console.ReadLine();
 
-          newAnimal = new Fish(nicknameThisAnimal, ageThisAnimal, nicknameThisAnimal, habitatThisAnimal, colorThisAnimal, propertyThisAnimal);
+          newAnimal = new Fish(nicknameThisAnimal, ageThisAnimal, habitatThisAnimal, typeOfFoodThisAnimal, colorThisAnimal, propertyThisAnimal);
         }
 
         else if (modeSelection == 4)
@@ -288,24 +289,24 @@ namespace OOPLabs
           ageThisAnimal = int.Parse(Console.ReadLine());
 
           Console.Write("\nEnter habitat: ");
-          nicknameThisAnimal = Console.ReadLine();
+          habitatThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter type of food: ");
-          habitatThisAnimal = Console.ReadLine();
+          typeOfFoodThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter color: ");
           colorThisAnimal = Console.ReadLine();
 
-          Console.Write("\nEnter wing span: ");
-          propertyThisAnimal = Console.ReadLine();
+          Console.Write("\nEnter is venomous (y/n):: ");
+          propertyThisAnimal = Console.ReadLine().ToLower();
 
-          if (propertyThisAnimal == "y")
+          if (propertyThisAnimal == "y" || propertyThisAnimal == "yes")
           {
-            newAnimal = new Reptile(nicknameThisAnimal, ageThisAnimal, nicknameThisAnimal, habitatThisAnimal, colorThisAnimal, true);
+            newAnimal = new Reptile(nicknameThisAnimal, ageThisAnimal, habitatThisAnimal, typeOfFoodThisAnimal, colorThisAnimal, true);
           }
-          else if (propertyThisAnimal == "n")
+          else if (propertyThisAnimal == "n" || propertyThisAnimal == "no")
           {
-            newAnimal = new Reptile(nicknameThisAnimal, ageThisAnimal, nicknameThisAnimal, habitatThisAnimal, colorThisAnimal, false);
+            newAnimal = new Reptile(nicknameThisAnimal, ageThisAnimal, habitatThisAnimal, typeOfFoodThisAnimal, colorThisAnimal, false);
           }
         }
 
@@ -318,18 +319,18 @@ namespace OOPLabs
           ageThisAnimal = int.Parse(Console.ReadLine());
 
           Console.Write("\nEnter habitat: ");
-          nicknameThisAnimal = Console.ReadLine();
+          habitatThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter type of food: ");
-          habitatThisAnimal = Console.ReadLine();
+          typeOfFoodThisAnimal = Console.ReadLine();
 
           Console.Write("\nEnter color: ");
           colorThisAnimal = Console.ReadLine();
 
-          Console.Write("\nEnter wing span: ");
+          Console.Write("\nEnter skin moisture: ");
           propertyThisAnimal = Console.ReadLine();
 
-          newAnimal = new Amphibian(nicknameThisAnimal, ageThisAnimal, nicknameThisAnimal, habitatThisAnimal, colorThisAnimal, int.Parse(propertyThisAnimal));
+          newAnimal = new Amphibian(nicknameThisAnimal, ageThisAnimal, habitatThisAnimal, typeOfFoodThisAnimal, colorThisAnimal, int.Parse(propertyThisAnimal));
         }
 
         else if (modeSelection == 6)
@@ -346,8 +347,8 @@ namespace OOPLabs
 
         if (newAnimal != null)
         {
-          manager.AddDocument(newAnimal);
-          Console.WriteLine("\n--- document information ---");
+          manager.AddAnimal(newAnimal);
+          Console.WriteLine("\n--- animal information ---");
           Console.WriteLine(newAnimal.GetInfo());
         }
       }
