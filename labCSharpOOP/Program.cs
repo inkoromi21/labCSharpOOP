@@ -35,9 +35,9 @@ namespace OOPLabs
   {
     public bool hasFur;
 
-    public Mammal(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, bool AnimalHasFur) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
+    public Mammal(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, bool animalHasFur) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
-      hasFur = AnimalHasFur;
+      hasFur = animalHasFur;
     }
 
     public override string GetInfo()
@@ -55,9 +55,9 @@ namespace OOPLabs
   {
     public float wingSpan;
 
-    public Bird(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, float AnimalWingSpan) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
+    public Bird(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, float animalWingSpan) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
-      wingSpan = AnimalWingSpan;
+      wingSpan = animalWingSpan;
     }
 
     public override string GetInfo()
@@ -75,9 +75,9 @@ namespace OOPLabs
   {
     public string waterType;
 
-    public Fish(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, string AnimalWaterType) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
+    public Fish(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, string animalWaterType) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
-      waterType = AnimalWaterType;
+      waterType = animalWaterType;
     }
 
     public override string GetInfo()
@@ -95,9 +95,9 @@ namespace OOPLabs
   {
     public bool isVenomous;
 
-    public Reptile(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, bool AnimalIsVenomous) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
+    public Reptile(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, bool animalIsVenomous) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
-      isVenomous = AnimalIsVenomous;
+      isVenomous = animalIsVenomous;
     }
 
     public override string GetInfo()
@@ -115,9 +115,9 @@ namespace OOPLabs
   {
     public int skinMoisture;
 
-    public Amphibian(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, int AnimalSkinMoisture) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
+    public Amphibian(string animalNickname, int animalAge, string animalHabitat, string animalTypeOfFood, string animalColor, int animalSkinMoisture) : base(animalNickname, animalAge, animalHabitat, animalTypeOfFood, animalColor)
     {
-      skinMoisture = AnimalSkinMoisture;
+      skinMoisture = animalSkinMoisture;
     }
 
     public override string GetInfo()
@@ -168,7 +168,7 @@ namespace OOPLabs
       }
 
       Console.WriteLine("\n=== All animal ===");
-      for (int animalIndex = 0; animalIndex < _animals.Count; animalIndex++)
+      for (int animalIndex = 0; animalIndex < _animals.Count; ++animalIndex)
       {
         Console.WriteLine($"\n--- Animal #{animalIndex + 1} ({_animals[animalIndex].GetType()}) ---");
         Console.WriteLine(_animals[animalIndex].GetInfo());
